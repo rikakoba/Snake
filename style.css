@@ -1,0 +1,14 @@
+canvas {
+    background-color: black !important;
+    display: block;
+    margin: auto;
+}
+
+p {
+    text-align: center;
+}
+
+.reward-cup {
+    display: none;
+    transform: translateX(400px);
+}

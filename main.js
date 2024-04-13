@@ -31,8 +31,9 @@ const food = {
 let dx = 0;
 let dy = 0;
 
-let position_x = [];
-let position_y = [];
+let positions = [];
+let positions_x = [];
+let positions_y = [];
 
 function handleKey(event) {
     switch (event.key) {
@@ -81,26 +82,20 @@ function moveSnake() {
     }
 
     if(snake.length > 1) {
-        if(snake.length != position_x.length) {
-            position_x.push(snake[0].x);
+        for(let i = 0; i < positions_x.length; i++) {
+            updatePosition(i);
         }
 
-        for(let i = 0; i < position_x.length; i++) {
-            if(i == 0 || i != 0 && position_x[position_x.length - 1] == position_x[position_x.length - 1]) {
-                continue;
-            }
-
-            updatePosition(i);
+        if(snake.length != positions_x.length) {
+            positions_x.push(snake[0].x);
         }
     }
 }
 
 function updatePosition(pos) {
-    position_x[0] = snake[0].x;
-    position_x[pos] = snake[pos].x;
-    console.log(position_x);
-    // position_y[pos] = snake[pos].y;
-    // position_y[pos] = snake[pos].y;
+    positions_x[pos] = snake[pos].x;
+    positions_y[pos] = snake[pos].y;
+    positions[pos] = positions_x[pos];
 }
 
 function draw() {
@@ -126,6 +121,8 @@ function checkCollision() {
             return true;
         }
     }
+
+    console.log(positions);
 
     if(score < 0) {
         return true;
